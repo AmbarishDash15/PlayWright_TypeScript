@@ -51,7 +51,7 @@ test ('register user', async () => {
     await newsLetterYes.click();
     await privacyPolicy.check();
     await continueButton.click();
-    
+    await page.waitForURL()
     const confirmationHeader = await page.title();
     expect(confirmationHeader).toEqual('Your Account Has Been Created!');
 
