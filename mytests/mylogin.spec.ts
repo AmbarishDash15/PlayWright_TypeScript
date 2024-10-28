@@ -23,3 +23,36 @@ test ('my login test', async () => {
 
     await browser.close();
 })
+
+test ('register user', async () => {
+    const browser:Browser = await chromium.launch({ channel: 'chrome' });
+    const page:Page = await browser.newPage();
+    await page.goto('https://naveenautomationlabs.com/opencart/index.php?route=account/register');
+    const pageTitle = await page.title();
+    console.log(pageTitle)
+    // expect(pageTitle).toEqual('Register Account');
+
+    const firstName:Locator = await page.locator('#input-firstname');
+    const lastName:Locator = await page.locator('#input-lastname');
+    const eMail:Locator = await page.locator('#input-email');
+    const telephone:Locator = await page.locator('#input-telephone');
+    const password:Locator = await page.locator('#input-password');
+    const passwordConfirm:Locator = await page.locator('#input-confirm');
+    const newsLetterYes:Locator = await page.locator('[name="newsletter"][value="1"]');
+    const privacyPolicy:Locator = await page.locator('[name="agree"]');
+    const continueButton:Locator = await page.locator('[value="Continue"]');
+
+    await firstName.fill('Test');
+    await lastName.fill('User');
+    await eMail.fill('Test.User@yopmail.com');
+    await telephone.fill('987654321');
+    await password.fill('Test@123');
+    await passwordConfirm.fill('Test@123');
+    await newsLetterYes.click();
+    await privacyPolicy.check();
+    await continueButton.click();
+    
+    const confirmationHeader = await page.title();
+    expect(confirmationHeader).toEqual('Your Account Has Been Created!');
+
+})
