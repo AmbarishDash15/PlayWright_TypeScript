@@ -25,7 +25,7 @@ import { webkit, chromium, firefox } from '@playwright/test'
 })
 */
 test ('register user', async () => {
-    const browser:Browser = await chromium.launch({ channel: 'chrome' });
+    const browser:Browser = await chromium.launch();
     const page:Page = await browser.newPage();
     await page.goto('https://naveenautomationlabs.com/opencart/index.php?route=account/register');
     const pageTitle = await page.title();
@@ -46,7 +46,7 @@ test ('register user', async () => {
 
     await firstName.fill('Test1');
     await lastName.fill('User');
-    await eMail.fill('Test.User134131@yopmail.com');
+    await eMail.fill('Test.User134134@yopmail.com');
     await telephone.fill('987654321');
     await password.fill('Test@123');
     await passwordConfirm.fill('Test@123');
