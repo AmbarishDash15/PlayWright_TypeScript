@@ -13,6 +13,6 @@ test ('Login to HCM', async ({ page}) => {
     expect(envString).toEqual(pageString);
     await loginPage.login('adash','Tcsl@008311111');
     const homePage: HomePage = new HomePage(page);
-    const landingEnvironmentText: String = await homePage.verifyHomePageIcon();
+    const landingEnvironmentText: String = await homePage.verifyHomePage();
     expect(landingEnvironmentText).toContain('Logo')
 })

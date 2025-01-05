@@ -37,7 +37,7 @@ export class LoginPage {
     }
 
     async getHomePageElement(): Promise<void> {
-    await this.page.click(this.loginButton);
+        await this.page.click(this.loginButton);
     }
 
     // Method to log in
