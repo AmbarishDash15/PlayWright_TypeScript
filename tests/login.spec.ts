@@ -1,9 +1,9 @@
-const { webkit, firefox, chromium, Browser } = require('@playwright/test');
-import { test, expect, Page } from '@playwright/test'
+const { webkit, firefox, chromium } = require('@playwright/test');
+import { test, expect, Page, Browser } from '@playwright/test'
 
 test('login test', async () => {
     // const browser:Browser = await firefox.launch({ headless: false });
-    const browser:Browser = await chromium.launch();
+    const browser: Browser = await chromium.launch();
     const page:Page = await browser.newPage();
     await page.goto('https://naveenautomationlabs.com/opencart/index.php?route=account/login');
     const emailId = await page.locator('[name="email"]');
@@ -17,4 +17,4 @@ test('login test', async () => {
     const title = await page.title();
     console.log(title);
     await page.screenshot({ path: `example.png` })
-})
+}) 
