@@ -1,6 +1,7 @@
 const { webkit, firefox, chromium } = require('@playwright/test');
 import { test, expect, Page, Browser, Locator } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
+import { HomePage } from '../pages/HomePage';
 
 test.skip ('Browser Context Playwright test', async ({browser})=>{
     const context = await browser.newContext();
@@ -12,7 +13,7 @@ test.skip ('Page Playwright test', async ({page})=>{
     await page.goto("https://www.google.com");
 });
 
-test.only ('Check Error Message Playwright test', async ()=>{
+test.skip ('Check Error Message Playwright test', async ()=>{
     const browser: Browser = await chromium.launch();
     const page:Page = await browser.newPage();
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
@@ -30,7 +31,7 @@ test.only ('Check Error Message Playwright test', async ()=>{
 
 })
 
-test ('Successful Login Playwright test', async ()=>{
+test.skip ('Successful Login Playwright test', async ()=>{
     // const browser: Browser = await firefox.launch();
     const browser:Browser = await chromium.launch();
     const page:Page = await browser.newPage();
@@ -59,7 +60,7 @@ test ('Successful Login Playwright test', async ()=>{
     await expect(homePageBanner).toContainText('ProtoCommerce');
 })
 
-test ('Verify products on Home Page', async ()=>{
+test.skip ('Verify products on Home Page', async ()=>{
     const browser:Browser = await chromium.launch();
     const page:Page = await browser.newPage();
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
@@ -93,3 +94,21 @@ test ('Verify products on Home Page', async ()=>{
     await expect(allTitles).toContain('Nokia Edge');
     
 })
+
+test ('Check Login Error with POM', async ({page})=> {
+    const loginPage = new LoginPage(page);
+    await loginPage.navigate();
+    await loginPage.fillLoginFormInvalid('invalid','invalid');
+    await loginPage.clickLoginButton();
+    await loginPage.verifyLoginError();
+})
+
+test ('Verify Successful login with POM', async({ page })=> {
+    const loginPage = new LoginPage(page);
+    const homePage = new HomePage(page);
+    await loginPage.navigate();
+    await loginPage.fillLoginFormValid();
+    await loginPage.clickLoginButton();
+    await homePage.verifyLoginSuccess();
+})
+

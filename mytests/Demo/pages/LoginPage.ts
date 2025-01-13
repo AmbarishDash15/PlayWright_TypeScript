@@ -42,9 +42,9 @@ export class LoginPage {
         await this.cotermsChkBx.check();
     }
 
-    async fillLoginFormInvalid() {
-        await this.userName.fill('forError');
-        await this.passWord.fill('forError');
+    async fillLoginFormInvalid(wrongUserName: string, wrongPassword: string) {
+        await this.userName.fill(wrongUserName);
+        await this.passWord.fill(wrongPassword);
         await this.userTypeAdmin.click();
         await this.cotermsChkBx.check();
     }
@@ -53,8 +53,8 @@ export class LoginPage {
         await this.signInBtn.click();
     }
 
-    async verifyLoginSuccess(page : Page) {
-        const homePage = new HomePage(page)
-        await expect(homePage.homePageBanner).toBeVisible();
+    async verifyLoginError() {
+        console.log(await this.errorMessage.innerText());
+        await expect(this.errorMessage).toContainText('Incorrect');
     }
 }

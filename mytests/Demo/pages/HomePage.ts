@@ -10,4 +10,7 @@ export class HomePage {
         this.homePageBanner = page.locator('.navbar-brand').first();
         this.productList = page.locator('.card-title a');
     }
+    async verifyLoginSuccess() {
+        await expect(this.homePageBanner).toBeVisible();
+    }
 }
