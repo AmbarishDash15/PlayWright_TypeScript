@@ -13,9 +13,8 @@ test.skip ('Page Playwright test', async ({page})=>{
 });
 
 test.only ('Check Error Message Playwright test', async ()=>{
-    // const browser: Browser = await chromium.launch();
-    // const page:Page = await browser.newPage();
-    const loginPage: Page = new LoginPage();
+    const browser: Browser = await chromium.launch();
+    const page:Page = await browser.newPage();
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log(await page.title());
     await expect(await page.title()).toContain('LoginPage');
