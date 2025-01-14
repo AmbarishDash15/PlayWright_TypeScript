@@ -44,8 +44,8 @@ export class LoginPage {
     async fillLoginFormInvalid(wrongUserName: string, wrongPassword: string) {
         await this.userName.fill(wrongUserName);
         await this.passWord.fill(wrongPassword);
-        await this.userTypeAdmin.click();
-        await this.cotermsChkBx.check();
+        // await this.userTypeAdmin.click();
+        // await this.cotermsChkBx.check();
     }
 
     async clickLoginButton() {

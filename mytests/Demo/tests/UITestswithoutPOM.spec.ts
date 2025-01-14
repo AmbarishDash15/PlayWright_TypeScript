@@ -1,0 +1,60 @@
+import { test, expect, Locator } from '@playwright/test';
+
+test ('Verify Successful login without POM', async ({ page })=>{
+    // const browser: Browser = await firefox.launch();
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    console.log(await page.title());
+    await expect(await page.title()).toContain('LoginPage');
+    const userName: Locator = await page.locator('#username');
+    const passWord: Locator = await page.locator('#password');
+    const userTypeAdmin: Locator = await page.locator('[type="radio"][value="admin"]');
+    const userTypeUser: Locator = await page.locator('[type="radio"][value="user"]');
+    const courseType: Locator = await page.locator('.form-control');
+    const cotermsChkBx: Locator = await page.locator('#terms');
+    const signInBtn: Locator = await page.locator('#signInBtn');
+    const userNameHelp: Locator = await page.locator('b:nth-child(1) > i');
+    const passwordHelp: Locator = await page.locator('b:nth-child(2) > i');
+    const userNameExtracted: string = await userNameHelp.innerText();
+    const passwordExtracted: string = await passwordHelp.innerText();
+    await userName.fill(userNameExtracted);
+    await passWord.fill(passwordExtracted);
+    await userTypeAdmin.click();
+    // await courseType.selectOption('Student');
+    await cotermsChkBx.check();
+    await signInBtn.click();
+    const homePageBanner: Locator = await page.locator('.navbar-brand').first();
+    console.log(await homePageBanner.innerText());
+    await expect(homePageBanner).toContainText('ProtoCommerce');
+});
+
+test ('Verify products on Home Page without POM', async ({ page })=>{
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    console.log(await page.title());
+    await expect(await page.title()).toContain('LoginPage');
+    const userName: Locator = await page.locator('#username');
+    const passWord: Locator = await page.locator('#password');
+    const userTypeAdmin: Locator = await page.locator('[type="radio"][value="admin"]');
+    const userTypeUser: Locator = await page.locator('[type="radio"][value="user"]');
+    const courseType: Locator = await page.locator('.form-control');
+    const cotermsChkBx: Locator = await page.locator('#terms');
+    const signInBtn: Locator = await page.locator('#signInBtn');
+    const userNameHelp: Locator = await page.locator('b:nth-child(1) > i');
+    const passwordHelp: Locator = await page.locator('b:nth-child(2) > i');
+    const userNameExtracted: string = await userNameHelp.innerText();
+    const passwordExtracted: string = await passwordHelp.innerText();
+    await userName.fill(userNameExtracted);
+    await passWord.fill(passwordExtracted);
+    await userTypeAdmin.click();
+    // await courseType.selectOption('Student');
+    await cotermsChkBx.check();
+    await signInBtn.click();
+    const homePageBanner: Locator = await page.locator('.navbar-brand').first();
+    const productList: Locator = await page.locator('.card-title a')
+    console.log(await homePageBanner.innerText());
+    await expect(homePageBanner).toContainText('ProtoCommerce');
+    const allTitles: string[] = await productList.allTextContents();
+    console.log(await allTitles);
+    console.log(await productList.first().textContent());
+    await expect(allTitles[0]).toContain('iphone X');
+    await expect(allTitles).toContain('Nokia Edge');
+});
