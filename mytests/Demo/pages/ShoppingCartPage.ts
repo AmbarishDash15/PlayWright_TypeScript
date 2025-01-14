@@ -10,6 +10,6 @@ export class ShoppingCartPage {
     }
 
     async verifyProductInCart(productName: string) {
-        expect(await this.productName).toContainText(productName);
+        await expect(this.productName).toContainText(productName);
     }
 }

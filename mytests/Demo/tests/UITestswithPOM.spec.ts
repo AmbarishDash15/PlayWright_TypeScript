@@ -41,7 +41,7 @@ test ('Verify Product Price', async({ page })=>{
     })
 });
 
-test ('Verify added product in Shopping Cart', async({ page })=> {
+test.only ('Verify added product in Shopping Cart', async({ page })=> {
     const homePage = new HomePage(page);
     const shoppingCartPage = new ShoppingCartPage(page);
     const productToAdd: string = 'iphone X'
