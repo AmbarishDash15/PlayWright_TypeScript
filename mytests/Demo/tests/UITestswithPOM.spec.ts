@@ -1,6 +1,7 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { HomePage } from '../pages/HomePage';
+import { ShoppingCartPage } from '../pages/ShoppingCartPage';
 
 test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -40,5 +41,13 @@ test ('Verify Product Price', async({ page })=>{
     })
 });
 
+test.only ('Verify added product in Shopping Cart', async({ page })=> {
+    const homePage = new HomePage(page);
+    const shoppingCartPage = new ShoppingCartPage(page);
+    const productToAdd: string = 'iphone X'
+    await homePage.addProductToCart(productToAdd);
+    await homePage.goToShoppingCart();
+    await shoppingCartPage.verifyProductInCart(productToAdd);
+})
 
 

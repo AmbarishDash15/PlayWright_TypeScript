@@ -1,5 +1,4 @@
 import { expect, type Page, type Locator} from '@playwright/test'
-import { LoginPage } from './LoginPage'
 
 export class HomePage {
     readonly page: Page;
@@ -36,6 +35,10 @@ export class HomePage {
     async verifyProductCount(productsAdded: string) {
         // console.log(await this.checkOutButton.innerText());
         await expect(this.checkOutButton).toContainText(productsAdded);
+    }
+
+    async goToShoppingCart() {
+        await this.checkOutButton.click();
     }
 
 }
