@@ -22,5 +22,5 @@ test ('Check Login Error Message without POM', async ({ page })=>{
     await signInBtn.click();
     // console.log(await errorMessage.textContent());
     await expect(errorMessage).toContainText('Incorrect');
-
+    await page.screenshot({ path: 'screenshotFailure.png', fullPage: true });
 });

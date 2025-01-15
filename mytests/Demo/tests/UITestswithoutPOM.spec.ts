@@ -47,6 +47,7 @@ test ('Verify products on Home Page without POM', async ({ page })=>{
     await userTypeAdmin.click();
     // await courseType.selectOption('Student');
     await cotermsChkBx.check();
+    await page.screenshot({ path: 'screenshot.png', fullPage: true });
     await signInBtn.click();
     const homePageBanner: Locator = await page.locator('.navbar-brand').first();
     const productList: Locator = await page.locator('.card-title a')
