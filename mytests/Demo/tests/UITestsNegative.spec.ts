@@ -20,7 +20,7 @@ test ('Check Login Error Message without POM', async ({ page })=>{
     await userName.fill('invalid');
     await passWord.fill('invalid');
     await signInBtn.click();
-    console.log(await errorMessage.textContent());
+    // console.log(await errorMessage.textContent());
     await expect(errorMessage).toContainText('Incorrect');
 
 });
