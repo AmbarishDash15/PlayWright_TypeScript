@@ -53,7 +53,7 @@ export class LoginPage {
     }
 
     async verifyLoginError() {
-        console.log(await this.errorMessage.innerText());
+        // console.log(await this.errorMessage.innerText());
         await expect(this.errorMessage).toContainText('Incorrect');
     }
 }
