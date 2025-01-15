@@ -21,6 +21,6 @@ test ('Check Login Error Message without POM', async ({ page })=>{
     await passWord.fill('invalid');
     await signInBtn.click();
     // console.log(await errorMessage.textContent());
-    await expect(errorMessage).toContainText('Incorrect');
-    await page.screenshot({ path: 'screenshotFailure.png', fullPage: true });
+    await expect(errorMessage).toContainText('Incorrecto');
+    // await page.screenshot({ path: 'screenshotFailure.png', fullPage: true });
 });
