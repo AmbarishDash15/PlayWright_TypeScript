@@ -19,7 +19,7 @@ export class LoginPage {
         this.passWord = page.locator('#password');
         this.userTypeAdmin = page.locator('[type="radio"][value="admin"]');
         this.userTypeUser = page.locator('[type="radio"][value="user"]');
-        this.courseType = page.locator('.form-control');
+        this.courseType = page.locator('select.form-control');
         this.cotermsChkBx = page.locator('#terms');
         this.signInBtn = page.locator('#signInBtn');
         this.userNameHelp = page.locator('b:nth-child(1) > i');
@@ -38,7 +38,9 @@ export class LoginPage {
         await this.userName.fill(userNameExtracted);
         await this.passWord.fill(passwordExtracted);
         await this.userTypeAdmin.click();
+        await this.courseType.selectOption('consult');
         await this.cotermsChkBx.check();
+        // await this.page.pause();
     }
 
     async fillLoginFormInvalid(wrongUserName: string, wrongPassword: string) {
