@@ -7,6 +7,7 @@ export class LoginPage {
     readonly userTypeAdmin: Locator;
     readonly userTypeUser: Locator;
     readonly courseType: Locator;
+    readonly popupOkay: Locator;
     readonly cotermsChkBx: Locator;
     readonly signInBtn: Locator;
     readonly userNameHelp: Locator;
@@ -20,11 +21,12 @@ export class LoginPage {
         this.userTypeAdmin = page.locator('[type="radio"][value="admin"]');
         this.userTypeUser = page.locator('[type="radio"][value="user"]');
         this.courseType = page.locator('select.form-control');
+        this.popupOkay = page.locator('#okayBtn');
         this.cotermsChkBx = page.locator('#terms');
         this.signInBtn = page.locator('#signInBtn');
         this.userNameHelp = page.locator('b:nth-child(1) > i');
         this.passwordHelp = page.locator('b:nth-child(2) > i');
-        this.errorMessage = page.locator('[style*="block"]')
+        this.errorMessage = page.locator('[style*="block"]');
     }
     
 
@@ -32,12 +34,24 @@ export class LoginPage {
         await this.page.goto('https://rahulshettyacademy.com/loginpagePractise/');
     }
 
-    async fillLoginFormValid() {
+    async fillLoginFormValidAdmin() {
         const userNameExtracted: string = await this.userNameHelp.innerText();
         const passwordExtracted: string = await this.passwordHelp.innerText();
         await this.userName.fill(userNameExtracted);
         await this.passWord.fill(passwordExtracted);
         await this.userTypeAdmin.click();
+        await this.courseType.selectOption('consult');
+        await this.cotermsChkBx.check();
+        // await this.page.pause();
+    }
+
+    async fillLoginFormValidUser() {
+        const userNameExtracted: string = await this.userNameHelp.innerText();
+        const passwordExtracted: string = await this.passwordHelp.innerText();
+        await this.userName.fill(userNameExtracted);
+        await this.passWord.fill(passwordExtracted);
+        await this.userTypeUser.click();
+        await this.popupOkay.click();
         await this.courseType.selectOption('consult');
         await this.cotermsChkBx.check();
         // await this.page.pause();

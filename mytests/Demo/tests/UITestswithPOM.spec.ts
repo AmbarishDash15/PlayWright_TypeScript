@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
     const homePage = new HomePage(page);
     await loginPage.navigate();
-    await loginPage.fillLoginFormValid();
+    await loginPage.fillLoginFormValidUser();
     await loginPage.clickLoginButton();
     await homePage.verifyLoginSuccess();
 })
