@@ -12,6 +12,7 @@ export class HomePage {
         this.checkOutButton = page.locator('.nav-link.btn.btn-primary');
     }
     async verifyLoginSuccess() {
+        await this.page.waitForLoadState('load');
         await expect(this.homePageBanner).toBeVisible();
     }
     async verifyProductAvailability(productName: string) {

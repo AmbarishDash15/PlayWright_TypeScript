@@ -17,7 +17,7 @@ test ('Check Product Availability', async({ page })=>{
     await homePage.verifyProductAvailability('Blackberry');
 });
 
-test.only ('Get All Products', async({ page })=>{
+test ('Get All Products', async({ page })=>{
     const homePage = new HomePage(page);
     await homePage.getAllProductsAvailable();
 });
