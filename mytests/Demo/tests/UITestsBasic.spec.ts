@@ -2,7 +2,6 @@ import { BrowserContext, Page, test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { HomePage } from '../pages/HomePage';
 import { DocumentRequestPage } from '../pages/DocumentsRequestPage';
-import { text } from 'stream/consumers';
 
 test ('Verify Successful User login', async({ page })=> {
     const loginPage = new LoginPage(page);
@@ -76,5 +75,4 @@ test.only ('Get text from other tab and paste on previous', async({ browser })=>
     const docReqPage: DocumentRequestPage = new DocumentRequestPage(newPage);
     const domainName: string = await docReqPage.getDomainName();
     await loginPage.enterUserName(domainName);
-    pageMain.pause();
 })
