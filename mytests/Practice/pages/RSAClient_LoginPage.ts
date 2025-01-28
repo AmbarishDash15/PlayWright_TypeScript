@@ -19,6 +19,7 @@ export class ClientLoginPage {
 
     async navigate() {
         await this.page.goto('https://rahulshettyacademy.com/client/');
+        await this.page.waitForLoadState('load');
     }
 
     async verifyPageTitle(pageTitle: string) {

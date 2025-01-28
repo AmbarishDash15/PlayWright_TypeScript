@@ -10,7 +10,7 @@ test('Check Valid Login', async({ page }) => {
     await loginPage.verifyPageTitle('Let\'s Shop');
     await loginPage.verufyLoginBanner();
     await loginPage.enterEmail('dash.ambarish15@gmail.com');
-    await loginPage.enterPassword('Tcsl@0083');
+    await loginPage.enterPassword(' Tcsl@0083');
     await loginPage.clickLoginButton();
     await homePage.verifyHomePageLabel('Automation');
 })
