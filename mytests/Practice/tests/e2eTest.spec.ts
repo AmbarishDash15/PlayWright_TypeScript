@@ -15,7 +15,7 @@ test.beforeEach(async({ page })=>{
     await homePage.verifyHomePageLabel('Automation');
 })
 
-test('Check available products', async({ page })=>{
+test.only('Check available products', async({ page })=>{
     const homePage = new ClientHomePage(page);
     const itemList: string[] = await homePage.getAvailableProducts();
     itemList.forEach(value => {
@@ -23,7 +23,7 @@ test('Check available products', async({ page })=>{
     })
 })
 
-test.only('View product details', async({ page })=>{
+test('View product details', async({ page })=>{
     const homePage = new ClientHomePage(page);
     const prodDetailsPage = new ClientProductDetailsPage(page);
     const itemList: string[] = await homePage.getAvailableProducts();
